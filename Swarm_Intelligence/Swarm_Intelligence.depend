@@ -1,28 +1,19 @@
 # depslib dependency file v1.0
-1464008349 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\main.cpp
-	<cstdlib>
-	<iostream>
-	<thread>
+1464083744 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process\process_manager.cpp
+	"Process_Manager.h"
+
+1464083752 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process\process_manager.h
 	<vector>
-	<mutex>
-	<ctime>
-	<chrono>
-	"Swarm_Search.h"
+	<map>
+	"Process.h"
+
+1464080774 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process\process.h
+	<thread>
+
+1464083740 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\bees_algorithm.cpp
 	"Bees_Algorithm.h"
 
-1464074938 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\swarm_search.h
-	<cstdlib>
-	"Optimization_Strategy.h"
-	"Bees_Algorithm.h"
-	"Process.h"
-	"Process_Manager.h"
-
-1464008333 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\optimization_strategy.h
-	<cstdlib>
-	"Process.h"
-	"Process_Manager.h"
-
-1464076932 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\bees_algorithm.h
+1464083769 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\bees_algorithm.h
 	<fstream>
 	<iostream>
 	<sstream>
@@ -33,17 +24,63 @@
 	<thread>
 	"Optimization_Strategy.h"
 
-1464011238 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process.h
+1464085977 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\optimization_strategy.h
+	<cstdlib>
+	"Process.h"
+	"Process_Manager.h"
+
+1464080774 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process.h
 	<thread>
 
-1464032883 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process_manager.h
+1464083752 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process_manager.h
 	<vector>
 	<map>
 	"Process.h"
 
-1464076747 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\bees_algorithm.cpp
+1464083744 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process_manager.cpp
+	"Process_Manager.h"
+
+1464086877 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\swarm_intelligence_demo.cpp
+	<cstdlib>
+	<iostream>
+	<thread>
+	<vector>
+	<mutex>
+	<ctime>
+	<chrono>
+	"Optimization/Swarm_Search.h"
+	"Optimization/Bees_Algorithm.h"
+
+1464086468 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\swarm_search.h
+	<cstdlib>
+	"Optimization_Strategy.h"
+	"Bees_Algorithm.h"
+	"Process.h"
+	"Process_Manager.h"
+
+1464083740 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\optimization\bees_algorithm.cpp
 	"Bees_Algorithm.h"
 
-1464032916 source:f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\process_manager.cpp
-	"Process_Manager.h"
+1464083769 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\optimization\bees_algorithm.h
+	<fstream>
+	<iostream>
+	<sstream>
+	<regex>
+	<math.h>
+	<random>
+	<time.h>
+	<thread>
+	"Optimization_Strategy.h"
+
+1464086900 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\optimization\optimization_strategy.h
+	<cstdlib>
+	"Process/Process.h"
+	"Process/Process_Manager.h"
+
+1464087213 f:\shaherin\dropbox\2016 semester 1\comp 719\mini project\swarm_intelligence\optimization\swarm_search.h
+	<cstdlib>
+	"Optimization/Optimization_Strategy.h"
+	"Optimization/Bees_Algorithm.h"
+	"Process/Process.h"
+	"Process/Process_Manager.h"
 

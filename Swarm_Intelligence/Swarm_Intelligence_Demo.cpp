@@ -7,8 +7,8 @@
 #include <chrono>
 //#inculde <atomic> //atomic type variables synchronise reading and writing under the hood
 
-#include "Swarm_Search.h"
-#include "Bees_Algorithm.h"
+#include "Optimization/Swarm_Search.h"
+#include "Optimization/Bees_Algorithm.h"
 
 using namespace std;
 

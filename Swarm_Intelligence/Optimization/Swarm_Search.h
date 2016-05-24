@@ -2,10 +2,10 @@
 #define SWARM_SEARCH_H
 
 #include <cstdlib>
-#include "Optimization_Strategy.h"
-#include "Bees_Algorithm.h"
-#include "Process.h"
-#include "Process_Manager.h"
+#include "Optimization/Optimization_Strategy.h"
+#include "Optimization/Bees_Algorithm.h"
+#include "Process/Process.h"
+#include "Process/Process_Manager.h"
 
 using namespace std;
 

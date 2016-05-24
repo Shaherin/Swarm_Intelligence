@@ -3,8 +3,8 @@
 
 #include <cstdlib>
 
-#include "Process.h"
-#include "Process_Manager.h"
+#include "Process/Process.h"
+#include "Process/Process_Manager.h"
 
 using namespace std;
 
