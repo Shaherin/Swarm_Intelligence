@@ -140,6 +140,7 @@ class Bees_Algorithm : public Optimization_Strategy
                     :num_scoutBees(num_scoutBees), total_bees(num_scoutBees),
                      size_patches(size_patches)
       {};*/ //these should be defined by the algorithm itself, no args should be passed
+      //perhaps initialise with a command object
       virtual ~Bees_Algorithm(){};
 
       /** Utility */
@@ -147,7 +148,7 @@ class Bees_Algorithm : public Optimization_Strategy
       void initialiseBees();
 
       virtual void search();
-      virtual void loadData(const string filename);
+      //virtual void loadData(const string filename);
 
       virtual void evaluateSolutionFitness();
       void evaluateBeeFitness(vector<Bee*> bees);
@@ -176,10 +177,6 @@ class Bees_Algorithm : public Optimization_Strategy
       vector<Bee*> scout_bees;
       vector<Bee*> recruited_bees;
       vector<Bee*> remaining_bees;
-
-      //search space
-      int num_patches;
-      int total_processes;
 
       //typedef Process_Manager Patch;
       //vector<Patch> Patches; //contains numb_patches patches

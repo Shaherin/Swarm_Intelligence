@@ -77,82 +77,14 @@ void Bees_Algorithm::search()
 
 void Bees_Algorithm::evaluateBeeFitness(vector<Bee*> bees)
 {
-    for(Bee* bee : bees)
+    /*for(Bee* bee : bees)
     {
         bee->fitness = Processes[bee->location].calculateFitness();
-    };
+    };*/
 };
 
 void Bees_Algorithm::evaluateSolutionFitness()
 {
 
 
-};
-
-
-void Bees_Algorithm::loadData(const string filename)
-{
-    string line;
-    ifstream file(filename);
-
-    //regex for identifying specific lines of the data
-    regex regex_num_patches("(^\\s{2})(\\d+)"); //(2)
-    regex regex_num_processes("(^\\s{5,})(\\d+)"); //(2)
-    regex regex_process_triple("(^\\s{5,})(\\d+)(\\s+)(\\d+)(\\s+)(\\d+)"); //processing time(2), earliness(4), tardiness(6)
-
-    //line matcher, sub matcher, string conversion of sub matcher
-    smatch regex_matcher;
-    ssub_match group_matcher;
-    string str_group_matcher;
-
-    if(file.is_open())
-    {
-        /** Preliminary (variable collection) */
-        //get number of patches
-        getline(file, line);
-        if(regex_match(line, regex_matcher, regex_num_patches))
-        {
-            group_matcher = regex_matcher[2];
-            istringstream(group_matcher.str()) >> num_patches;
-        }
-
-        //get number of processes per patch, calculate number of processes
-        getline(file, line);
-        if(regex_match(line, regex_matcher, regex_num_processes))
-        {
-            group_matcher = regex_matcher[2];
-            istringstream(group_matcher.str()) >> size_patches;
-
-            total_processes = num_patches * size_patches;
-        }
-
-        /** Main reading loop */
-        //read in data from patches
-        //int current_patch = 0;
-        //Patches.push_back(Process_Manager());
-        while(getline(file, line))
-        {
-            //if number of processes per patch is encountered, begin reading a new patch
-            /*if(regex_match(line, regex_matcher, regex_num_processes))
-            {
-                current_patch++;
-                Patches.push_back(Process_Manager());
-            }*/
-
-            //get process triple and create process
-            if(regex_match(line, regex_matcher, regex_process_triple))
-            {
-                double processing_time;
-                double earliness_penalty;
-                double tardiness_penalty;
-
-                istringstream(regex_matcher[2].str()) >> processing_time;
-                istringstream(regex_matcher[4].str()) >> earliness_penalty;
-                istringstream(regex_matcher[6].str()) >> tardiness_penalty;
-
-                //Patches[current_patch].addProcess( move(Process(time_duration(processing_time), earliness_penalty, tardiness_penalty)) );
-                Processes.addProcess( move(Process(time_duration(processing_time), earliness_penalty, tardiness_penalty)) );
-            }
-        }
-    }
 };

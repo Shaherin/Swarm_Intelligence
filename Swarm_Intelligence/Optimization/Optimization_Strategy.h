@@ -1,7 +1,10 @@
 #ifndef OPTIMIZATION_STRATEGY_H
 #define OPTIMIZATION_STRATEGY_H
 
-#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <regex>
 
 #include "Process/Process.h"
 #include "Process/Process_Manager.h"
@@ -21,13 +24,25 @@ class Optimization_Strategy
       virtual void initialise() = 0;
       virtual void search() = 0;
 
-      virtual void loadData(const string filename) = 0;
+      virtual void loadData(const string filename);
+
+      //generates a solution space for a particular set of data
+      virtual void generateSolutionSpace(int process_set);
 
       //evaluates the fitness of the eventual solution found by the strategy
       virtual void evaluateSolutionFitness() = 0;
 
   protected:
-      Process_Manager Processes;
+      //Process_Manager Processes;
+      //contains a single set of data corresponding to a key
+      vector<Process_Manager> Process_Sets;
+
+      vector<Process_Manager> Solution_Space;
+
+      //search space
+      int num_data_sets;
+      int num_processes; //per data set
+      int total_processes;
 
       //data filepaths
       const string sch10   = "Data Files/sch10.txt";
