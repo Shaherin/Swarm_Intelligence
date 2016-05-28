@@ -6,7 +6,7 @@ This is a comparative study of various heuristics and metaheuristics applied to 
 The results will be compared to those in the original paper, as well as other solutions to the SMS problem.<br />
 This repository contains the Codeblocks Project(C++), and articles related to the work.
 
-Credit to M.E. O'Neill for providing an alternative to allow non-deterministic RNG for gcc on Windows. <br />
+Credit to M.E. O'Neill for providing an alternative to allow non-deterministic RNG for gcc on Windows, bypassing the random_device "bug". <br />
 http://www.pcg-random.org/blog/ <br />
 https://www.reddit.com/r/cpp/comments/34yqxa/announcing_randutils_a_single_portable/ <br />
 
