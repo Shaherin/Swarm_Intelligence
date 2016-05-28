@@ -8,6 +8,7 @@ The results will be compared to those in the original paper, as well as other so
 This repository contains the Codeblocks Project(C++), and articles related to the work.
 
 Credit to M.E. O'Neill for providing an alternative to allow non-deterministic RNG for gcc on Windows.
+
 http://www.pcg-random.org/blog/
 https://www.reddit.com/r/cpp/comments/34yqxa/announcing_randutils_a_single_portable/
 
