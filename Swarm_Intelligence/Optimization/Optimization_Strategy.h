@@ -33,16 +33,16 @@ class Optimization_Strategy
       virtual void evaluateSolutionFitness() = 0;
 
   protected:
-      //Process_Manager Processes;
-      //contains a single set of data corresponding to a key
+      //contains Process_Manager for each set of data loaded from the file
       vector<Process_Manager> Process_Sets;
 
+      //contains
       vector<Process_Manager> Solution_Space;
 
       //search space
       int num_data_sets;
       int num_processes; //per data set
-      int total_processes;
+      //int total_processes;
 
       //data filepaths
       const string sch10   = "Data Files/sch10.txt";

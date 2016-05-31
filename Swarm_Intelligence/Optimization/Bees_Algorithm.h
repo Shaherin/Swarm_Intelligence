@@ -9,8 +9,11 @@
 #include <random>
 #include <time.h>
 #include <thread>
+#include <map>
+#include <algorithm>
 
 #include "Optimization_Strategy.h"
+#include "Random/randutils.hpp"
 
 using namespace std;
 
@@ -92,6 +95,11 @@ using namespace std;
  *    -These will be the new scout bees.
  *  >END WHILE
  *
+ *  -The goal of an iteration of the search is to obtain two sets of results, from the local and global
+ *   searches. The best of these 2 sets of bees will be chosen as the new population in the second cycle
+ *   etc..
+ *
+ *
  **/
 
 class Bees_Algorithm : public Optimization_Strategy
@@ -109,7 +117,7 @@ class Bees_Algorithm : public Optimization_Strategy
 
           //bee identifiers
           int bee_ID;
-          BEE_TYPE type;
+          BEE_TYPE type = SCOUT;
 
           double fitness = 0;
           int location; //process id visited by the bee
@@ -158,25 +166,32 @@ class Bees_Algorithm : public Optimization_Strategy
 
       /** Mutators */
       void setTotalBees(int total_bees) { this->total_bees = total_bees; };
+      void setNumIterations(int num_iterations) { this->num_iterations = num_iterations; };
 
   private:
+      int num_iterations = 1;
+
       //variables
-      int num_scoutBees;     // (b) initial scouts
-      int num_recruitedBees; // (nep) to be sent to the best sites
-      int num_remainingBees; // (nsp) bees to be sent to the remaining selected sites
-      int total_bees;
+      int total_bees = 400;        // (p) population - also initial no. scouts
+      int num_scoutBees;     // (b) number of scouts on successive runs
+      int num_recruitedBees = 50; // (nep) to be sent to the best sites
+      int num_remainingBees;  // (nsp) bees to be sent to the remaining selected sites
 
-      int num_selectedSites; // (m) number of sites selected out of sites visited
-      int num_bestSites;     // (e) number of best sites out of selected sites
+      const int num_selectedSites = 200; // (m) number of sites selected out of sites visited (b)
+      //const int num_bestSites = 100;      // (e) number of best sites out of selected sites
 
-      int size_patches; // (ngh) initial size of the patches (site, neighbourhood, stopping criterion)
+      const int size_patches = 6; // (ngh) initial size of the patches (site, neighbourhood, stopping criterion)
 
       vector<Bee> hive;
 
       //points to Bee objects in hive and classifies them(prevents the need to iterate through entire hive and check bee type)
       vector<Bee*> scout_bees;
-      vector<Bee*> recruited_bees;
+      //vector<Bee*> recruited_bees;
       vector<Bee*> remaining_bees;
+
+      //map of location(solution space index) of patches, constaining vector of bees at that patch
+      map<int, vector<Bee*>> patch_locations;
+      //vector<vector<Bee*>> Patches;
 
       //typedef Process_Manager Patch;
       //vector<Patch> Patches; //contains numb_patches patches

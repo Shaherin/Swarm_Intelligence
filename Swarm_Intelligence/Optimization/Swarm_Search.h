@@ -72,6 +72,8 @@ class Swarm_Search
           p_strategy->search();
       };
 
+      Optimization_Strategy* getStrategy() { return p_strategy.get(); };
+
   private:
       unique_ptr<Optimization_Strategy> p_strategy;
       double common_due_date;
