@@ -50,6 +50,9 @@ void Process_Manager::shuffleProcesses()
         m_processes[i+8].setID(i+8);
         m_processes[i+9].setID(i+9);
     }
+
+    //reset start time and completion time
+    //initialiseProcesses();
 };
 
 void Process_Manager::clearProcesses()
@@ -59,34 +62,59 @@ void Process_Manager::clearProcesses()
     m_available_IDs.clear();
 };
 
-//d = round [SUM_P * h]
-double Process_Manager::calcCommonDueDate(vector<Process*> processes)
+//initialises start and completion time of processes
+void Process_Manager::initialiseProcesses()
 {
-    double common_due_date = 0;
+    m_processes[0].setStartTime(0);
+    m_processes[0].setCompletionTime(m_processes[0].getProcessingTime());
 
-    //for each process,
-    for(auto process_iter : processes)
-        common_due_date += process_iter->calculateFitness();
+    for(int i = 1; i<m_processes.size(); i++)
+    {
+        m_processes[i].setStartTime(m_processes[i-1].getCompletionTime());
+        m_processes[i].setCompletionTime(m_processes[i].getStartTime()+m_processes[i].getProcessingTime());
+    }
 
-    common_due_date = common_due_date * m_restrictive_factor;
-
-    return common_due_date;
-
-    /*time_duration common_due_date = time_duration(0);
-    for(auto map_iter : m_processes)
-        common_due_date += map_iter.second.getProcessingTime();
-
-    m_common_due_date = common_due_date.count() * m_restrictive_factor;*/
+    //calcCommonDueDate();
 };
 
-double Process_Manager::calculateFitness(vector<Process*> processes)
+//d = round [SUM_P * h]
+void Process_Manager::calcCommonDueDate(double restrictive_factor)
+{
+    m_restrictive_factor = restrictive_factor;
+    m_common_due_date = 0.0;
+
+    //for each process, sum the processing times
+    for(Process process: m_processes)
+        m_common_due_date += process.getProcessingTime();
+
+    m_common_due_date = m_common_due_date * m_restrictive_factor;
+
+    ///NOTE: This for loop does not work for some reason
+    /*for(Process process: m_processes)
+    {
+        process.setDueDate(m_common_due_date);
+    }*/
+
+    //set the due date in each process
+    for(int i = 0; i<m_processes.size(); i++)
+    {
+        m_processes[i].setDueDate(m_common_due_date);
+    }
+
+};
+
+double Process_Manager::calculateFitness()
 {
     double fitness = 0;
 
     //for each process, calculate and sum fitness values
-    for(auto process_iter : processes)
-        fitness += process_iter->calculateFitness();
+    //for(Process process: m_processes)
+        //fitness += process.calculateFitness();
 
+    for(int i = 0; i<m_processes.size(); i++)
+        fitness+=m_processes[i].calculateFitness();
+
+    m_total_fitness = fitness;
     return fitness;
 };
 
