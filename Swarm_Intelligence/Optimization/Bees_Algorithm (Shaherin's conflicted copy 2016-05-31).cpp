@@ -29,10 +29,9 @@ void Bees_Algorithm::initialiseBees()
 
 };
 
-
 void Bees_Algorithm::search()
 {
-    cout<<"Searching..."<<num_iterations<<endl;
+    cout<<"Searching..."<<endl;
     ///Note: gcc on windows does not support non-deterministic random_device so an alternative had to be found
     //random_device rd;
     //default_random_engine generator(rd());
@@ -62,9 +61,10 @@ void Bees_Algorithm::search()
     evaluateBeeFitness(scout_bees); //writes fitness to bee
 
     ///>WHILE(STOPPING CRITERION)
+    //TODO : What is the stopping criterion? Quality of solution? number of iterations of search? completion of search space?
     bool stop_criterion = false;
     //while(!stop_criterion)
-    for(int iteration = 0; iteration < num_iterations; iteration++)
+    for(int iteration = 0; iteration < 3; iteration++)
     {
         ///3. Choose scout bees with highest fitness and choose their sites for a neighbourhood search
         //sort main hive to make it easier to seperate scouts and other bees, rather than having to check each bee type
@@ -85,6 +85,9 @@ void Bees_Algorithm::search()
             }
             else
             {
+                //patch_locations[bee_index] = (hive[bee_index].location);
+                //patch_locations.push_back(hive[bee_index].location);
+
                 //initialise vector of bees around a patch
                 patch_locations[hive[bee_index].location] = vector<Bee*>();
 
@@ -134,90 +137,42 @@ void Bees_Algorithm::search()
 
         }
 
+        //vector<int> recruited_bee_locations(num_recruitedBees); //50 recruited bees
+        //vector<int> remaining_bee_locations(num_remainingBees); //30 remaining
+        //vector<int> new_scout_locations(num_scoutBees); //150 new scouts
+
         ///5. Select the fittest bee from each patch searched
         //replace scout_bees vector with the fittest bee of each patch
         scout_bees.clear();
 
-        //evaluate fitness of each patch and add the bee of highest fitness from each patch to scout_bees
         for(auto patch : patch_locations)
         {
-            evaluateBeeFitness(patch.second);
-            //sort(patch.second.begin(), patch.second.end());//sort patch vector of bees based on fitness
-            sort(hive.begin(), hive.end());
+            ///evaluateBeeFitness(patch.second);
+            sort(patch.second.begin(), patch.second.end());//sort patch vector of bees based on fitness
 
-            //for(Bee* bee : patch.second)
-                //cout<<bee->fitness<<endl;
-
-            scout_bees.push_back(patch.second[0]);//add the first bee(bee of highest fitness for that patch)
+            scout_bees.push_back(patch.second[0]);//add the first bee(bee of highest fitness)
         };
 
         ///6. Assign remaining bees to search randomly and evaluate fitness (search for new areas)
-        //nuM_selectedSites are initial scouts, num_recruitedBees are performing global search
         num_remainingBees = total_bees - (num_selectedSites + num_recruitedBees);
-
-        //iterate through remaining bees in the hive and assign them a random location with uniform distribution
         for(int bee_index = num_selectedSites + num_recruitedBees; bee_index<total_bees; bee_index++)
         {
             hive[bee_index].location = generator.uniform(0, static_cast<int>(Solution_Space.size()) );
             remaining_bees.push_back(&hive[bee_index]);
         }
 
-        //evaulate fitness of the global search
-        evaluateBeeFitness(remaining_bees);
-        //sort(remaining_bees.begin(), remaining_bees.end());
-        sort(hive.begin(), hive.end());
+        ///evaluateBeeFitness(remaining_bees);
+        sort(remaining_bees.begin(), remaining_bees.end());
 
         //for(auto i : patch_locations)
             //cout<<i.first<<endl;
 
-        //for(Bee* i : remaining_bees)
+        //for(Bee* i : scout_bees)
             //cout<<i->fitness<<endl;
-
-       // for(Bee i : hive)
-            //cout<<i.fitness<<endl;
+        for(Bee* i : remaining_bees)
+            cout<<i->fitness<<endl;
 
     }///END WHILE
-
-    //output final solution
-    sort(hive.begin(), hive.end());
-
-    //error avoiding
-    Process_Manager temp_processes;
-    for(int i = 0; i<hive.size(); i++)
-    {
-        if(Solution_Space[hive[i].location].getProcesses().size() != 0)
-        {
-            temp_processes = Solution_Space[hive[i].location];
-            break;
-        }
-    };
-
-//cout<<"sz: "<<temp_processes.getProcesses().size()<<endl;
-//cout<<"Prfe "<<temp_processes.getFitness()<<endl;
-
-    ofstream myfile;
-    myfile.open("Results/n10h02r1.txt", ios_base::app);
-    myfile<<"Final Solution Schedule:"<<endl;
-        for(int i = 0; i<temp_processes.getProcesses().size(); i++)
-        {
-            myfile<<"[ "<<temp_processes[i].getProcessingTime()
-                        <<" "
-                        <<temp_processes[i].getEarlinessPenalty()
-                        <<" "
-                        <<temp_processes[i].getEarliness()
-                        <<" "
-                        <<temp_processes[i].getTardinessPenalty()
-                        <<" "
-                        <<temp_processes[i].getTardiness()
-                        <<" ]";
-        }
-    myfile<<endl
-          <<"Final Solution Fitness:"<<endl
-          <<temp_processes.getFitness()<<endl;
-
-
-    //myfile.close();
-
 };
 
 void Bees_Algorithm::evaluateBeeFitness(vector<Bee*> bees)
