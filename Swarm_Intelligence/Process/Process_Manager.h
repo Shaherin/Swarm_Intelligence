@@ -44,7 +44,7 @@ class Process_Manager
       //initialises start and completion time of processes once all processes are added
       void initialiseProcesses();
       //d = round [SUM_P * h] - set this value within contained processes
-      void calcCommonDueDate(double restrictive_factor = 0.8);
+      void calcCommonDueDate(double restrictive_factor = 0.2);
       //calculates fitness of all processes contained in this manager
       double calculateFitness();
 
@@ -85,7 +85,7 @@ class Process_Manager
 
       double m_total_fitness; //f(S) fitness of all combined processes
       double m_common_due_date; // (d)
-      double m_restrictive_factor = 0.4; // (h) used in estimating common due date
+      double m_restrictive_factor = 0.2; // (h) used in estimating common due date
 
 };
 
