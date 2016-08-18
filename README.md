@@ -11,3 +11,7 @@ http://www.pcg-random.org/blog/ <br />
 https://www.reddit.com/r/cpp/comments/34yqxa/announcing_randutils_a_single_portable/ <br />
 
 Released under the GNU General Public License v3.0
+
+
+<b> NOTE </b> <br>
+This project was done on a strict deadline over a 3 week period. There are a multitude of problems including design issues, crashes, and poor final execution. It works, but it does so quite poorly.
