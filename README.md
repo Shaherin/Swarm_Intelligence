@@ -1,4 +1,5 @@
 # Swarm_Intelligence
+github.io: http://shaherin.github.io/Swarm_Intelligence/
 
 The aim of this project is to replicate and extend the work done by D.T. Pham et al. in their paper "Using the Bees Algorithm to schedule jobs for a machine". 
 
